@@ -42,6 +42,8 @@ public class Controller implements Initializable {
     private Button Incomplete_Button;
     @FXML
     private TreeView<String> Todo_List_Treeview;
+    @FXML
+    private Label Todo_Label;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -60,7 +62,15 @@ public class Controller implements Initializable {
             current_Todo_Tree_Selection=item;
             if(current_Todo_Tree_Selection.getParent()!=null) {
                 //Case where the parent is the root meaning that we have selected an Item
+                Item currentItem=null;
                 if (current_Todo_Tree_Selection.getParent().getValue().equals(RootText)) {
+                    for (int i = 0; i < TDC.getTodoList().getItems().size(); i++) {
+                        Item temp= TDC.getTodoList().getItems().get(i);
+                        if(temp.getName().equals(current_Todo_Tree_Selection.getValue()))
+                            currentItem=temp;
+                    }
+                    Todo_Label.setText("Selected Item Information:\nName: "+currentItem.getName()+"\nDescription: "+ currentItem.getDescription()
+                            +"\nDue Date: "+currentItem.getDate().getDateinString()+"\nComplete?: "+currentItem.getComplete());
                     currentSelection="ITEM";
                     Delete_Button.setText("Delete");
                     Delete_Button.setOpacity(1.0);
@@ -138,6 +148,8 @@ public class Controller implements Initializable {
                     Item currentItem= TDC.getTodoList().getItems().get(i);
                     if(currentItem.getName().equals(current_Todo_Tree_Selection.getValue())){
                         currentItem.setDescription(input.getText().toString());
+                        Todo_Label.setText("Selected Item Information:\nName: "+currentItem.getName()+"\nDescription: "+ currentItem.getDescription()
+                                +"\nDue Date: "+currentItem.getDate().getDateinString()+"\nComplete?: "+currentItem.getComplete());
                     }
             }
         }
@@ -155,6 +167,8 @@ public class Controller implements Initializable {
                 Item currentItem= TDC.getTodoList().getItems().get(i);
                 if(currentItem.getName().equals(current_Todo_Tree_Selection.getValue())){
                     currentItem.setDate(newDate);
+                    Todo_Label.setText("Selected Item Information:\nName: "+currentItem.getName()+"\nDescription: "+ currentItem.getDescription()
+                            +"\nDue Date: "+currentItem.getDate().getDateinString()+"\nComplete?: "+currentItem.getComplete());
                 }
             }
             dueDate_Button.setOpacity(0.25);
@@ -168,8 +182,9 @@ public class Controller implements Initializable {
                 Item currentItem= TDC.getTodoList().getItems().get(i);
                 if(currentItem.getName().equals(current_Todo_Tree_Selection.getValue())){
                     currentItem.setComplete(true);
+                    Todo_Label.setText("Selected Item Information:\nName: "+currentItem.getName()+"\nDescription: "+ currentItem.getDescription()
+                            +"\nDue Date: "+currentItem.getDate().getDateinString()+"\nComplete?: "+currentItem.getComplete());
                 }
-                System.out.println(currentItem.getComplete());
             }
         }
     }
@@ -181,8 +196,9 @@ public class Controller implements Initializable {
                 Item currentItem= TDC.getTodoList().getItems().get(i);
                 if(currentItem.getName().equals(current_Todo_Tree_Selection.getValue())){
                     currentItem.setComplete(false);
+                    Todo_Label.setText("Selected Item Information:\nName: "+currentItem.getName()+"\nDescription: "+ currentItem.getDescription()
+                            +"\nDue Date: "+currentItem.getDate().getDateinString()+"\nComplete?: "+currentItem.getComplete());
                 }
-                System.out.println(currentItem.getComplete());
             }
         }
     }
