@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.assignment42_final.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.Controller">
     <children>
         <Button layoutX="162.0" layoutY="265.0" mnemonicParsing="false" text="Delete" />
         <Button layoutX="228.0" layoutY="265.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Save" />
@@ -32,6 +32,6 @@
         </Button>
         <Button layoutX="25.0" layoutY="207.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="103.0" text="Load Single List" />
         <Button layoutX="25.0" layoutY="110.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="103.0" text="Save all" />
-        <Button layoutX="25.0" layoutY="60.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="103.0" text="Create" />
+        <Button fx:id="Add_Button" layoutX="25.0" layoutY="60.0" mnemonicParsing="false" onAction="#Add_Item" prefHeight="39.0" prefWidth="103.0" text="Add Item" />
     </children>
 </AnchorPane>
