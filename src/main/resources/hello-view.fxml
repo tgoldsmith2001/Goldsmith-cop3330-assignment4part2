@@ -6,8 +6,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.Controller">
     <children>
-        <Button fx:id="Delete_Button" layoutX="162.0" layoutY="265.0" mnemonicParsing="false" onAction="#Delete_Item" opacity="0.25" text="Delete" />
-        <Button layoutX="228.0" layoutY="265.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Save" />
+        <Button fx:id="Delete_Button" layoutX="162.0" layoutY="265.0" mnemonicParsing="false" onAction="#Delete_Item" opacity="0.25" prefHeight="25.0" prefWidth="75.0" text="Delete" />
+        <Button layoutX="240.0" layoutY="265.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Save" />
         <Button layoutX="303.0" layoutY="265.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Edit" />
         <TreeView fx:id="Todo_List_Treeview" layoutX="162.0" layoutY="59.0" onContextMenuRequested="#Todo_Tree_Selected" onMouseClicked="#Todo_Tree_Selected" prefHeight="200.0" prefWidth="200.0" />
         <Button layoutX="25.0" layoutY="158.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="103.0" text="Load File" />

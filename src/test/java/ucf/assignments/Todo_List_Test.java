@@ -22,7 +22,7 @@ class Todo_List_Test {
             assertEquals(Todo_test.getItems().get(i),Test.get(i));
         }
     }
-    //Test for Requirement 10
+
     @org.junit.jupiter.api.Test
     void removeItem() {
         {
@@ -40,6 +40,23 @@ class Todo_List_Test {
             for (int i = 0; i < Test.size(); i++) {
                 assertEquals(Todo_test.getItems().get(i),Test.get(i));
             }
+        }
+    }
+
+    @org.junit.jupiter.api.Test
+    void removeAllItems(){
+        {
+            ArrayList<Item> Test= new ArrayList<Item>();
+            Item toAdd=new Item(false, "Test1", new date(00,00,00),"Test");
+            Test.add(toAdd);
+            toAdd=new Item(false, "Test2", new date(00,00,00),"Test");
+            Test.add(toAdd);
+            toAdd=new Item(false, "Test3", new date(00,00,00),"Test");
+            Test.add(toAdd);
+
+            Todo_List Todo_test= new Todo_List("Todo_Test",Test);
+            Todo_test.removeAllItems();
+            assertEquals(Todo_test.getItems().size(),0);
         }
     }
 

@@ -54,10 +54,13 @@ public class Controller implements Initializable {
                 //Case where the parent is the root meaning that we have selected an Item
                 if (current_Todo_Tree_Selection.getParent().getValue().equals(RootText)) {
                     currentSelection="ITEM";
+                    Delete_Button.setText("Delete");
                     Delete_Button.setOpacity(1.0);
                 }
             }else{
                 currentSelection="TODO";
+                Delete_Button.setText("Delete All");
+                Delete_Button.setOpacity(1.0);
                 }
         }
     }
@@ -82,6 +85,7 @@ public class Controller implements Initializable {
     }
     @FXML
     void Delete_Item(){
+        //Deletes only one item
         if(currentSelection.equals("ITEM")){
             ArrayList<Item> itemList= TDC.getTodoList().getItems();
             for (int i = 0; i < itemList.size(); i++) {
@@ -92,6 +96,14 @@ public class Controller implements Initializable {
                 }
             }
             Delete_Button.setOpacity(0.25);
+        }
+        //Deletes all items in the List
+        else if(currentSelection.equals("TODO")){
+            for (int i = 0; i < TDC.getTodoList().getItems().size(); i++) {
+                TreeItem children = getItemFromTree(TDC.getTodoList().getItems().get(i).getName(),Todo_Root);
+                children.getParent().getChildren().remove(children);
+            }
+            TDC.getTodoList().removeAllItems();
         }
     }
     private Optional <ArrayList<String>> itemDialog(){

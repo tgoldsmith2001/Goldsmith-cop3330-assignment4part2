@@ -49,6 +49,10 @@ public class Todo_List {
         this.items.remove(removeIndex);
         return this.items;
     }
+    public ArrayList<Item> removeAllItems(){
+        this.items.clear();
+        return this.items;
+    }
     //Searches for item in Array
     private int searchItem(String name){
         /*
