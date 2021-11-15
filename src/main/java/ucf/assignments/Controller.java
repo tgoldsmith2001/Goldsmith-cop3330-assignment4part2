@@ -23,6 +23,7 @@ public class Controller implements Initializable {
 
     TreeItem<String> current_Todo_Tree_Selection=null;
     String currentSelection= "NONE";
+    String Items_Shown= "ALL";
 
     Todo_Controller TDC= new Todo_Controller("src/main","Storage");
 
@@ -40,6 +41,8 @@ public class Controller implements Initializable {
     private Button Complete_Button;
     @FXML
     private Button Incomplete_Button;
+    @FXML
+    private Button ViewAll_Button;
     @FXML
     private TreeView<String> Todo_List_Treeview;
     @FXML
@@ -200,6 +203,22 @@ public class Controller implements Initializable {
                             +"\nDue Date: "+currentItem.getDate().getDateinString()+"\nComplete?: "+currentItem.getComplete());
                 }
             }
+        }
+    }
+    @FXML
+    void setDisplayAll(){
+        Items_Shown="ALL";
+        ViewAll_Button.setOpacity(1);
+        //ViewCompleted_Button.setOpacity(0.25);
+        //ViewIncomplete_Button.setOpacity(0.25);
+        //Clear out all Items
+        for (int i = 0; i < Todo_Root.getChildren().size(); i++) {
+            Todo_Root.getChildren().get(i).getParent().getChildren().remove(Todo_Root.getChildren().get(i));
+        }
+        //Add all Items back to the tree
+        for (int i = 0; i < TDC.getTodoList().getItems().size(); i++) {
+            TreeItem toAdd= new TreeItem<String>(TDC.getTodoList().getItems().get(i).getName());
+            Todo_Root.getChildren().add(toAdd);
         }
     }
 

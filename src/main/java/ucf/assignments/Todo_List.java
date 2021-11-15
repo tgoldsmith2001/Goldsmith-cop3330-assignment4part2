@@ -76,24 +76,22 @@ public class Todo_List {
     }
     //Returns only the items that are incomplete from items
     public ArrayList<Item>getIncompleteItems(){
-        /*
-        Create return_Array (ArrayList of Items)
-        For Item in items
-            If complete is false for item
-                Add to return_Array
-        return return_Array
-         */
-        return null;
+        ArrayList<Item>return_Array= new ArrayList<Item>();
+        for (int i = 0; i < this.items.size(); i++) {
+            if(!this.items.get(i).getComplete()){
+                return_Array.add(this.items.get(i));
+            }
+        }
+        return return_Array;
     }
     //Returns only the completed items from items
     public ArrayList<Item>getCompleteItems(){
-        /*
-        Create return_Array (ArrayList of Items)
-        For Item in items
-            If complete is true for item
-                Add to return_Array
-        return return_Array
-         */
-        return null;
+        ArrayList<Item>return_Array= new ArrayList<Item>();
+        for (int i = 0; i < this.items.size(); i++) {
+            if(this.items.get(i).getComplete()){
+                return_Array.add(this.items.get(i));
+            }
+        }
+        return return_Array;
     }
 }

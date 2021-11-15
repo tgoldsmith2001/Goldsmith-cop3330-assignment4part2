@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class Todo_List_Test {
     @Test
@@ -72,11 +71,11 @@ class Todo_List_Test {
     //Test for Requirement 14
     @org.junit.jupiter.api.Test
     void getItems() {
-        /*
-        Define test_14_items (arraylist of test items)
-        Define test_14 (a todo list) and create new todoList with title "Test_14" and test_14_items
-        Assert that test_14_items equals a call to getItems
-         */
+        ArrayList<Item> test_array= new ArrayList<Item>();
+        test_array.add(new Item(false,"Desc1",new date(00,00,0000),"Item1"));
+        test_array.add(new Item(true,"Desc2",new date(11,11,1111),"Item2"));
+        Todo_List todo_test= new Todo_List("Todo_Test",test_array);
+        assertTrue(test_array==todo_test.getItems());
     }
     //Test for Requirement 15
     @org.junit.jupiter.api.Test
