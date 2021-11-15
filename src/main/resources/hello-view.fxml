@@ -39,12 +39,12 @@
         <Button layoutX="25.0" layoutY="207.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="103.0" text="Load Single List" />
         <Button layoutX="25.0" layoutY="110.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="103.0" text="Save all" />
         <Button fx:id="Add_Button" layoutX="25.0" layoutY="60.0" mnemonicParsing="false" onAction="#Add_Item" prefHeight="39.0" prefWidth="103.0" text="Add Item" />
-      <Button fx:id="Complete_Button" layoutX="240.0" layoutY="292.0" mnemonicParsing="false" opacity="0.25" prefHeight="25.0" prefWidth="59.0" text="Mark Complete">
+      <Button fx:id="Complete_Button" layoutX="240.0" layoutY="292.0" mnemonicParsing="false" onAction="#Mark_Complete" opacity="0.25" prefHeight="25.0" prefWidth="59.0" text="Mark Complete">
          <font>
             <Font size="7.0" />
          </font>
       </Button>
-      <Button fx:id="Incomplete_Button" layoutX="304.0" layoutY="292.0" mnemonicParsing="false" opacity="0.25" prefHeight="25.0" prefWidth="59.0" text="Mark Incomplete">
+      <Button fx:id="Incomplete_Button" layoutX="304.0" layoutY="292.0" mnemonicParsing="false" onAction="#Mark_Incomplete" opacity="0.25" prefHeight="25.0" prefWidth="59.0" text="Mark Incomplete">
          <font>
             <Font size="6.0" />
          </font>

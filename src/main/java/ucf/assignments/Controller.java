@@ -37,6 +37,10 @@ public class Controller implements Initializable {
     @FXML
     private Button dueDate_Button;
     @FXML
+    private Button Complete_Button;
+    @FXML
+    private Button Incomplete_Button;
+    @FXML
     private TreeView<String> Todo_List_Treeview;
 
     @Override
@@ -62,13 +66,17 @@ public class Controller implements Initializable {
                     Delete_Button.setOpacity(1.0);
                     Description_Button.setOpacity(1.0);
                     dueDate_Button.setOpacity(1.0);
+                    Complete_Button.setOpacity(1.0);
+                    Incomplete_Button.setOpacity(1.0);
                 }
             }else{
                 currentSelection="TODO";
                 Delete_Button.setText("Delete All");
                 Delete_Button.setOpacity(1.0);
-                Description_Button.setOpacity(1.0);
-                dueDate_Button.setOpacity(1.0);
+                Description_Button.setOpacity(0.25);
+                dueDate_Button.setOpacity(0.25);
+                Complete_Button.setOpacity(0.25);
+                Incomplete_Button.setOpacity(0.25);
                 }
         }
     }
@@ -132,7 +140,6 @@ public class Controller implements Initializable {
                         currentItem.setDescription(input.getText().toString());
                     }
             }
-                dueDate_Button.setOpacity(0.25);
         }
     }
     @FXML
@@ -145,13 +152,38 @@ public class Controller implements Initializable {
             int year= Integer.parseInt(arrayDate.get().get(2));
             date newDate= new date(month,day,year);
             for (int i = 0; i < TDC.getTodoList().getItems().size(); i++) {
-                System.out.println();
                 Item currentItem= TDC.getTodoList().getItems().get(i);
                 if(currentItem.getName().equals(current_Todo_Tree_Selection.getValue())){
                     currentItem.setDate(newDate);
                 }
             }
             dueDate_Button.setOpacity(0.25);
+        }
+    }
+    @FXML
+    void Mark_Complete(){
+        //Checks to ensure that this is an item level selection
+        if(currentSelection.equals("ITEM")){
+            for (int i = 0; i < TDC.getTodoList().getItems().size(); i++) {
+                Item currentItem= TDC.getTodoList().getItems().get(i);
+                if(currentItem.getName().equals(current_Todo_Tree_Selection.getValue())){
+                    currentItem.setComplete(true);
+                }
+                System.out.println(currentItem.getComplete());
+            }
+        }
+    }
+    @FXML
+    void Mark_Incomplete(){
+        //Checks to ensure that this is an item level selection
+        if(currentSelection.equals("ITEM")){
+            for (int i = 0; i < TDC.getTodoList().getItems().size(); i++) {
+                Item currentItem= TDC.getTodoList().getItems().get(i);
+                if(currentItem.getName().equals(current_Todo_Tree_Selection.getValue())){
+                    currentItem.setComplete(false);
+                }
+                System.out.println(currentItem.getComplete());
+            }
         }
     }
 

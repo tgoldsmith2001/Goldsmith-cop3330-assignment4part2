@@ -35,6 +35,13 @@ public class Item {
         return this.dueDate;
     }
 
+    public void setComplete(Boolean complete) {
+        this.complete = complete;
+    }
+    public Boolean getComplete(){
+        return this.complete;
+    }
+
     //Updates current items description based on input parameter
     public String updateDescription(String newDescription){
         /*
