@@ -22,6 +22,13 @@ public class Item {
         return name;
     }
 
+    public void setDescription(String description){
+        this.description=description;
+    }
+    public String getDescription(){
+        return this.description;
+    }
+
     //Updates current items description based on input parameter
     public String updateDescription(String newDescription){
         /*

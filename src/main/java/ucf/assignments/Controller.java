@@ -33,6 +33,8 @@ public class Controller implements Initializable {
     @FXML
     private Button Delete_Button;
     @FXML
+    private Button Description_Button;
+    @FXML
     private TreeView<String> Todo_List_Treeview;
 
     @Override
@@ -56,11 +58,13 @@ public class Controller implements Initializable {
                     currentSelection="ITEM";
                     Delete_Button.setText("Delete");
                     Delete_Button.setOpacity(1.0);
+                    Description_Button.setOpacity(1.0);
                 }
             }else{
                 currentSelection="TODO";
                 Delete_Button.setText("Delete All");
                 Delete_Button.setOpacity(1.0);
+                Description_Button.setOpacity(1.0);
                 }
         }
     }
@@ -106,6 +110,28 @@ public class Controller implements Initializable {
             TDC.getTodoList().removeAllItems();
         }
     }
+    @FXML
+    void Edit_Description(){
+        //Checks to ensure that this is an item level selection
+        if(currentSelection.equals("ITEM")){
+                TextInputDialog textInput = new TextInputDialog();
+
+                textInput.setTitle("Dialogue Box");
+                textInput.setHeaderText("");
+                textInput.getDialogPane().setContentText("Enter the new Description for the Item");
+                Optional<String> result = textInput.showAndWait();
+                TextField input = textInput.getEditor();
+                for (int i = 0; i < TDC.getTodoList().getItems().size(); i++) {
+                    System.out.println();
+                    Item currentItem= TDC.getTodoList().getItems().get(i);
+                    if(currentItem.getName().equals(current_Todo_Tree_Selection.getValue())){
+                        currentItem.setDescription(input.getText().toString());
+                        System.out.println(TDC.getTodoList().getItems().get(i).getDescription());
+                    }
+            }
+        }
+    }
+
     private Optional <ArrayList<String>> itemDialog(){
         //Dialog<Pair<String, String>> dialog = new Dialog<>();
         Dialog<ArrayList<String>> dialog = new Dialog<>();

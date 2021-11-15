@@ -7,8 +7,14 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.Controller">
     <children>
         <Button fx:id="Delete_Button" layoutX="162.0" layoutY="265.0" mnemonicParsing="false" onAction="#Delete_Item" opacity="0.25" prefHeight="25.0" prefWidth="75.0" text="Delete" />
-        <Button layoutX="240.0" layoutY="265.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Save" />
-        <Button layoutX="303.0" layoutY="265.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Edit" />
+        <Button fx:id="Description_Button" layoutX="240.0" layoutY="265.0" mnemonicParsing="false" onAction="#Edit_Description" opacity="0.25" prefHeight="25.0" prefWidth="59.0" text="Edit Descr.">
+         <font>
+            <Font size="8.0" />
+         </font></Button>
+        <Button fx:id="dueDate_Button" layoutX="303.0" layoutY="265.0" mnemonicParsing="false" opacity="0.25" prefHeight="25.0" prefWidth="59.0" text="Edit DueDate">
+         <font>
+            <Font size="8.0" />
+         </font></Button>
         <TreeView fx:id="Todo_List_Treeview" layoutX="162.0" layoutY="59.0" onContextMenuRequested="#Todo_Tree_Selected" onMouseClicked="#Todo_Tree_Selected" prefHeight="200.0" prefWidth="200.0" />
         <Button layoutX="25.0" layoutY="158.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="103.0" text="Load File" />
         <ListView layoutX="380.0" layoutY="59.0" prefHeight="200.0" prefWidth="200.0" />
@@ -33,5 +39,15 @@
         <Button layoutX="25.0" layoutY="207.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="103.0" text="Load Single List" />
         <Button layoutX="25.0" layoutY="110.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="103.0" text="Save all" />
         <Button fx:id="Add_Button" layoutX="25.0" layoutY="60.0" mnemonicParsing="false" onAction="#Add_Item" prefHeight="39.0" prefWidth="103.0" text="Add Item" />
+      <Button fx:id="Complete_Button" layoutX="240.0" layoutY="292.0" mnemonicParsing="false" opacity="0.25" prefHeight="25.0" prefWidth="59.0" text="Mark Complete">
+         <font>
+            <Font size="7.0" />
+         </font>
+      </Button>
+      <Button fx:id="Incomplete_Button" layoutX="304.0" layoutY="292.0" mnemonicParsing="false" opacity="0.25" prefHeight="25.0" prefWidth="59.0" text="Mark Incomplete">
+         <font>
+            <Font size="6.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

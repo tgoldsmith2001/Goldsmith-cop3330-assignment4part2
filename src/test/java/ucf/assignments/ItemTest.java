@@ -7,7 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ItemTest {
     //Test for Requirement 11
     @Test
-    void updateDescription() {
+    void setDescription() {
+        Item desc_test= new Item(false,"description_test",new date(00,00,0000),"test1");
+        Item toEdit= new Item(false,"description_old",new date(00,00,0000),"test1");
+        toEdit.setDescription("description_test");
+        assertEquals(desc_test.getDescription(),toEdit.getDescription());
     }
 
     //Test for Requirement 12
