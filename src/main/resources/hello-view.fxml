@@ -11,7 +11,7 @@
          <font>
             <Font size="8.0" />
          </font></Button>
-        <Button fx:id="dueDate_Button" layoutX="303.0" layoutY="265.0" mnemonicParsing="false" opacity="0.25" prefHeight="25.0" prefWidth="59.0" text="Edit DueDate">
+        <Button fx:id="dueDate_Button" layoutX="303.0" layoutY="265.0" mnemonicParsing="false" onAction="#Edit_dueDate" opacity="0.25" prefHeight="25.0" prefWidth="59.0" text="Edit DueDate">
          <font>
             <Font size="8.0" />
          </font></Button>

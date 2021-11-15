@@ -28,6 +28,12 @@ public class Item {
     public String getDescription(){
         return this.description;
     }
+    public void setDate(date dueDate){
+        this.dueDate=dueDate;
+    }
+    public date getDate(){
+        return this.dueDate;
+    }
 
     //Updates current items description based on input parameter
     public String updateDescription(String newDescription){

@@ -35,6 +35,8 @@ public class Controller implements Initializable {
     @FXML
     private Button Description_Button;
     @FXML
+    private Button dueDate_Button;
+    @FXML
     private TreeView<String> Todo_List_Treeview;
 
     @Override
@@ -59,12 +61,14 @@ public class Controller implements Initializable {
                     Delete_Button.setText("Delete");
                     Delete_Button.setOpacity(1.0);
                     Description_Button.setOpacity(1.0);
+                    dueDate_Button.setOpacity(1.0);
                 }
             }else{
                 currentSelection="TODO";
                 Delete_Button.setText("Delete All");
                 Delete_Button.setOpacity(1.0);
                 Description_Button.setOpacity(1.0);
+                dueDate_Button.setOpacity(1.0);
                 }
         }
     }
@@ -126,9 +130,28 @@ public class Controller implements Initializable {
                     Item currentItem= TDC.getTodoList().getItems().get(i);
                     if(currentItem.getName().equals(current_Todo_Tree_Selection.getValue())){
                         currentItem.setDescription(input.getText().toString());
-                        System.out.println(TDC.getTodoList().getItems().get(i).getDescription());
                     }
             }
+                dueDate_Button.setOpacity(0.25);
+        }
+    }
+    @FXML
+    void Edit_dueDate(){
+        //Checks to ensure that this is an item level selection
+        if(currentSelection.equals("ITEM")){
+            Optional<ArrayList<String>> arrayDate= dateDialog();
+            int month=Integer.parseInt(arrayDate.get().get(0));
+            int day=Integer.parseInt(arrayDate.get().get(1));
+            int year= Integer.parseInt(arrayDate.get().get(2));
+            date newDate= new date(month,day,year);
+            for (int i = 0; i < TDC.getTodoList().getItems().size(); i++) {
+                System.out.println();
+                Item currentItem= TDC.getTodoList().getItems().get(i);
+                if(currentItem.getName().equals(current_Todo_Tree_Selection.getValue())){
+                    currentItem.setDate(newDate);
+                }
+            }
+            dueDate_Button.setOpacity(0.25);
         }
     }
 
@@ -187,6 +210,60 @@ public class Controller implements Initializable {
                 ArrayList<String> ret= new ArrayList<>();
                 ret.add(name.getText());
                 ret.add(description.getText());
+                ret.add(month.getText());
+                ret.add(day.getText());
+                ret.add(year.getText());
+                return ret;
+            }
+            return null;
+        });
+        //Optional<Pair<String, String>> result = dialog.showAndWait();
+        Optional<ArrayList<String>> result = dialog.showAndWait();
+        return result;
+    }
+    private Optional <ArrayList<String>> dateDialog(){
+        //Dialog<Pair<String, String>> dialog = new Dialog<>();
+        Dialog<ArrayList<String>> dialog = new Dialog<>();
+        dialog.setTitle("Item Prompts");
+        dialog.setHeaderText("");
+
+        ButtonType enterButtonType = new ButtonType("Enter", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(enterButtonType, ButtonType.CANCEL);
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20, 150, 10, 10));
+
+        TextField month = new TextField();
+        month.setPromptText("XX");
+        TextField day = new TextField();
+        day.setPromptText("XX");
+        TextField year = new TextField();
+        year.setPromptText("XXXX");
+
+        grid.add(new Label("Month:"), 0, 0);
+        grid.add(month, 1, 0);
+        grid.add(new Label("Day:"), 0, 1);
+        grid.add(day, 1, 1);
+        grid.add(new Label("Year:"), 0, 2);
+        grid.add(year, 1, 2);
+
+        Node enterButton = dialog.getDialogPane().lookupButton(enterButtonType);
+        enterButton.setDisable(true);
+
+        //Invoked when text is entered to enable the enter button
+        month.textProperty().addListener((observable, oldValue, newValue) -> {
+            enterButton.setDisable(newValue.trim().isEmpty());
+        });
+
+        dialog.getDialogPane().setContent(grid);
+        Platform.runLater(() -> month.requestFocus());
+
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == enterButtonType) {
+                //return new Pair<>(name.getText(), description.getText());
+                ArrayList<String> ret= new ArrayList<>();
                 ret.add(month.getText());
                 ret.add(day.getText());
                 ret.add(year.getText());

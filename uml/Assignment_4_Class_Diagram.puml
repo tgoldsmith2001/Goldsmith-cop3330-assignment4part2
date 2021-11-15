@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class App{
+    + start(Stage stage)
+    + main(String[] args)
+}
+
+class Todo_List {
+    -String Title
+    -ArrayList<Item> items
+    + Todo_List(String title)
+    + Todo_List(String title, ArrayList<Item> items)
+    + ArrayList<Item> sortByDate()
+    +ArrayList<Item> addItem(Item addedElement)
+    +ArrayList<Item> removeItem(String removedElement)
+    -int searchArray(String Title)
+    +String updateTitle(String newTitle)
+}
+
+class Item{
+    -String description
+    -String dueDate
+    -boolean complete
+    +item(boolean complete, String description, date dueDate)
+    +String updateDescription(String newDescription)
+    +String updateDueDate(date newDueDate)
+    +boolean markComplete()
+}
+
+class Todo_Controller{
+    - ArrayList<Todo_List> all_todo_lists
+    - String file_name
+    - Path file_path
+    + Todo_Controller(Path path, String name)
+    + boolean addTodoList(Todo_List toAdd)
+    + boolean removeTodoList(Todo_List toRemove)
+    + boolean saveSingleToFile(Todo_List items)
+    + boolean saveAllToFile(ArrayList<Todo_List> todo)
+    + ArrayList<Todo_List> searchStorage(String listTitle)
+    + ArrayList<Todo_List> readMemory()
+}
+
+@enduml

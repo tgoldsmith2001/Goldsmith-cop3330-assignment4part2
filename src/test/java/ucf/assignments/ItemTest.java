@@ -16,12 +16,11 @@ class ItemTest {
 
     //Test for Requirement 12
     @Test
-    void updateDueDate() {
-        /*
-        Instantiate Item_Test_12 (new Item) with input parameters false, "description_test" and new date (as 2021-11-01)
-        Call updateDueDate with new date (as 2021-11-01) for Item_Test
-        Assert that the two Items are the same
-         */
+    void setDueDate() {
+        Item date_test= new Item(false,"description_test",new date(12,23,2001),"test1");
+        Item toEdit= new Item(false,"description_old",new date(11,15,2021),"test1");
+        toEdit.setDate(new date(12,23,2001));
+        assertEquals(toEdit.getDate().getDateinString(),date_test.getDate().getDateinString());
     }
     //Test for Requirement 13
     @Test
