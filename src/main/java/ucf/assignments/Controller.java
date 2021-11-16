@@ -234,7 +234,15 @@ public class Controller implements Initializable {
     void Edit_dueDate(){
         //Checks to ensure that this is an item level selection
         if(currentSelection.equals("ITEM")){
-            Optional<ArrayList<String>> arrayDate= dateDialog();
+            Optional<ArrayList<String>> arrayDate=null;
+            while(true) {
+                arrayDate = dateDialog();
+                if((arrayDate.get().get(0).toString().matches("[0-9]+") && arrayDate.get().get(0).toString().length() == 2)&&
+                        (arrayDate.get().get(1).toString().matches("[0-9]+") && arrayDate.get().get(1).toString().length() == 2)&&
+                        (arrayDate.get().get(2).toString().matches("[0-9]+") && arrayDate.get().get(2).toString().length() == 4))
+                    break;
+                System.out.println("Improper Format for Date");
+            }
             int month=Integer.parseInt(arrayDate.get().get(0));
             int day=Integer.parseInt(arrayDate.get().get(1));
             int year= Integer.parseInt(arrayDate.get().get(2));
