@@ -46,6 +46,8 @@ public class Controller implements Initializable {
     @FXML
     private Button ViewCompleted_Button;
     @FXML
+    private Button ViewInCompleted_Button;
+    @FXML
     private TreeView<String> Todo_List_Treeview;
     @FXML
     private Label Todo_Label;
@@ -110,9 +112,11 @@ public class Controller implements Initializable {
 
         Item toAdd= new Item(false,description,itemDueDate,name);
 
-        TDC.getTodoList().addItem(toAdd);
-        //Add item to the tree view list after added to array
-        Todo_Root.getChildren().add(new TreeItem<String>(toAdd.getName()));
+            TDC.getTodoList().addItem(toAdd);
+        if(Items_Shown.equals("INCOMPLETED")||Items_Shown.equals("ALL")) {
+            //Add item to the tree view list after added to array
+            Todo_Root.getChildren().add(new TreeItem<String>(toAdd.getName()));
+        }
     }
     @FXML
     void Delete_Item(){
@@ -187,6 +191,11 @@ public class Controller implements Initializable {
                 Item currentItem= TDC.getTodoList().getItems().get(i);
                 if(currentItem.getName().equals(current_Todo_Tree_Selection.getValue())){
                     currentItem.setComplete(true);
+                    //Removes from view if not proper setting
+                    if(Items_Shown.equals("INCOMPLETED")){
+                        TreeItem<String>toRemove= getItemFromTree(current_Todo_Tree_Selection.getValue(), Todo_Root);
+                        toRemove.getParent().getChildren().remove(toRemove);
+                    }
                     Todo_Label.setText("Selected Item Information:\nName: "+currentItem.getName()+"\nDescription: "+ currentItem.getDescription()
                             +"\nDue Date: "+currentItem.getDate().getDateinString()+"\nComplete?: "+currentItem.getComplete());
                 }
@@ -201,6 +210,11 @@ public class Controller implements Initializable {
                 Item currentItem= TDC.getTodoList().getItems().get(i);
                 if(currentItem.getName().equals(current_Todo_Tree_Selection.getValue())){
                     currentItem.setComplete(false);
+                    //Remove from view if current setting is only Completed Items
+                    if(Items_Shown.equals("COMPLETED")){
+                        TreeItem<String>toRemove= getItemFromTree(current_Todo_Tree_Selection.getValue(), Todo_Root);
+                        toRemove.getParent().getChildren().remove(toRemove);
+                    }
                     Todo_Label.setText("Selected Item Information:\nName: "+currentItem.getName()+"\nDescription: "+ currentItem.getDescription()
                             +"\nDue Date: "+currentItem.getDate().getDateinString()+"\nComplete?: "+currentItem.getComplete());
                 }
@@ -213,12 +227,11 @@ public class Controller implements Initializable {
         Items_Shown="ALL";
         ViewAll_Button.setOpacity(1);
         ViewCompleted_Button.setOpacity(0.25);
-        //ViewIncomplete_Button.setOpacity(0.25);
+        ViewInCompleted_Button.setOpacity(0.25);
         //Clear out all Items
-        int size=TDC.getTodoList().getCompleteItems().size();
-        for (int i = 0; i < size; i++) {
-            Todo_Root.getChildren().get(i).getParent().getChildren().remove(Todo_Root.getChildren().get(i));
-            i--;
+        while(Todo_Root.getChildren().size()>0){
+            System.out.println(Todo_Root.getChildren().size());
+            Todo_Root.getChildren().remove(Todo_Root.getChildren().size()-1);
         }
         //Add all Items back to the tree
         for (int i = 0; i < TDC.getTodoList().getItems().size(); i++) {
@@ -233,15 +246,32 @@ public class Controller implements Initializable {
             Items_Shown = "COMPLETED";
             ViewAll_Button.setOpacity(0.25);
             ViewCompleted_Button.setOpacity(1);
-            //ViewIncomplete_Button.setOpacity(0.25);
+            ViewInCompleted_Button.setOpacity(0.25);
             //Clear out all Items
-            for (int i = 0; i < Todo_Root.getChildren().size(); i++) {
-                Todo_Root.getChildren().get(i).getParent().getChildren().remove(Todo_Root.getChildren().get(i));
-                i--;
+            while(Todo_Root.getChildren().size()>0){
+                System.out.println(Todo_Root.getChildren().size());
+                Todo_Root.getChildren().remove(Todo_Root.getChildren().size()-1);
             }
-            int size = TDC.getTodoList().getCompleteItems().size();
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i <TDC.getTodoList().getCompleteItems().size(); i++) {
                 TreeItem toAdd = new TreeItem<String>(TDC.getTodoList().getCompleteItems().get(i).getName());
+                Todo_Root.getChildren().add(toAdd);
+            }
+        }
+    }
+    @FXML
+    void setDisplayInCompleted(){
+        if(!Items_Shown.equals("INCOMPLETED")) {
+            Items_Shown = "INCOMPLETED";
+            ViewAll_Button.setOpacity(0.25);
+            ViewCompleted_Button.setOpacity(0.25);
+            ViewInCompleted_Button.setOpacity(1);
+            //Clear out all Items
+            while(Todo_Root.getChildren().size()>0){
+                System.out.println(Todo_Root.getChildren().size());
+                Todo_Root.getChildren().remove(Todo_Root.getChildren().size()-1);
+            }
+            for (int i = 0; i < TDC.getTodoList().getIncompleteItems().size(); i++) {
+                TreeItem toAdd = new TreeItem<String>(TDC.getTodoList().getIncompleteItems().get(i).getName());
                 Todo_Root.getChildren().add(toAdd);
             }
         }
