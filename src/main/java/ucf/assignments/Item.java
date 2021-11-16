@@ -1,4 +1,5 @@
-package ucf.assignments;/*
+package ucf.assignments;
+/*
  *  UCF COP3330 Fall 2021 Assignment 4 Solution
  *  Copyright 2021 Tyler Goldsmith
  */
@@ -49,21 +50,5 @@ public class Item {
     public String updateDescription(String newDescription){
         this.description=newDescription;
         return "";
-    }
-    //Updates current items due date based on input parameter
-    public String updateDueDate(Date newDueDate){
-        /*
-        Set due date to the input parameter
-        return due date
-         */
-        return "";
-    }
-    //Marks the current item complete boolean as True
-    public boolean markComplete() {
-        /*
-        Set complete to true
-        return complete
-         */
-        return true;
     }
 }

@@ -6,39 +6,61 @@ class App{
     + main(String[] args)
 }
 
+class date{
+    -int year
+    -int month
+    -int year
+    +date(int month, int day, int year)
+    +getDateinString()
+}
+
 class Todo_List {
-    -String Title
-    -ArrayList<Item> items
+    - String title;
+    - ArrayList<Item>items=new ArrayList<Item>()
     + Todo_List(String title)
-    + Todo_List(String title, ArrayList<Item> items)
-    + ArrayList<Item> sortByDate()
-    +ArrayList<Item> addItem(Item addedElement)
-    +ArrayList<Item> removeItem(String removedElement)
-    -int searchArray(String Title)
-    +String updateTitle(String newTitle)
+    + Todo_List(String title,ArrayList<Item>items)
+    + ArrayList<Item> addItem(Item addedElement)
+    + ArrayList<Item> removeItem(int removeIndex)
+    + ArrayList<Item> removeAllItems()
+    + String getTitle()
+    + String updateTitle(String newTitle)
+    + ArrayList<Item>getItems()
+    + ArrayList<Item>getIncompleteItems()
+    + ArrayList<Item>getCompleteItems()
 }
 
 class Item{
-    -String description
-    -String dueDate
-    -boolean complete
-    +item(boolean complete, String description, date dueDate)
-    +String updateDescription(String newDescription)
-    +String updateDueDate(date newDueDate)
-    +boolean markComplete()
+       - String name;
+       - String description;
+       - date dueDate;
+       - Boolean complete;
+       + Item(boolean complete, String description, date dueDate, String name)
+       + String getName()
+       + void setDescription(String description)
+       + String getDescription()
+       + void setDate(date dueDate)
+       + date getDate()
+       + void setName(String name)
+       + void setComplete(Boolean complete)
+       + Boolean getComplete()
+       + String updateDescription(String newDescription)
 }
 
 class Todo_Controller{
-    - ArrayList<Todo_List> all_todo_lists
-    - String file_name
-    - Path file_path
-    + Todo_Controller(Path path, String name)
-    + boolean addTodoList(Todo_List toAdd)
-    + boolean removeTodoList(Todo_List toRemove)
-    + boolean saveSingleToFile(Todo_List items)
-    + boolean saveAllToFile(ArrayList<Todo_List> todo)
-    + ArrayList<Todo_List> searchStorage(String listTitle)
-    + ArrayList<Todo_List> readMemory()
+       - Todo_List Saved_todo=null;
+       - Todo_List global_todo=null;
+       - Todo_List Stored_todo_lists= null;
+       - String file_name;
+       - String file_path;
+       - File xmlFile;
+       + Todo_Controller(String path, String name) throws IOException
+       + void setTodoList(Todo_List toAdd)
+       + void setSavedTodoList(Todo_List toAdd)
+       + Todo_List getTodoList()
+       + Todo_List getSavedTodoList()
+       + Todo_List getGlobal_todo()
+       + Todo_List readMemory() throws IOException
+       - String parseSingleLine(String Tag, String line)
 }
 
 @enduml

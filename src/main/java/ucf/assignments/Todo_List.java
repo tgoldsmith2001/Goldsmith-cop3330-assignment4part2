@@ -1,4 +1,5 @@
-package ucf.assignments;/*
+package ucf.assignments;
+/*
  *  UCF COP3330 Fall 2021 Assignment 4 Solution
  *  Copyright 2021 Tyler Goldsmith
  */
@@ -17,28 +18,6 @@ public class Todo_List {
         this.items=items;
     }
 
-    //Sorts the items list by date (earliest to latest) then returns the resulting Array list of items
-    public ArrayList<Item> sortByDate(){
-        /*
-        For i=0 to i=items length
-            For j=i+1 to j=items length
-                Call compareTwoItems with input items[i] and items[j]
-                    If False
-                        Flip items[i] and items[j]
-        return items
-         */
-        return null;
-    }
-    //Compares item 1 and item 2 if item 1 is earlier return true, otherwise false
-    private boolean compareTwoItems(Item item1, Item item2){
-        /*
-        If date of item1 is earlier than date of item2
-            return true
-        Else
-            Return false
-         */
-        return false;
-    }
     //Allows user to add an item to items arraylist, then returns that item
     public ArrayList<Item> addItem(Item addedElement){
         this.items.add(addedElement);
@@ -54,11 +33,9 @@ public class Todo_List {
         return this.items;
     }
     //Searches for item in Array
-
     public String getTitle(){
         return this.title;
     }
-
     //Allows user to update title of todo list based on input parameter
     public String updateTitle(String newTitle){
         this.title=newTitle;

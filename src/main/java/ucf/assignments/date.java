@@ -1,3 +1,7 @@
+/*
+ *  UCF COP3330 Fall 2021 Assignment 4 Solution
+ *  Copyright 2021 Tyler Goldsmith
+ */
 package ucf.assignments;
 
 public class date {
@@ -9,15 +13,7 @@ public class date {
         this.day=day;
         this.year=year;
     }
-    public boolean dateLessThan(date compareDate){
-        if
-        (this.year< compareDate.year||
-                (this.year==compareDate.year&&this.month< compareDate.month)||
-                (this.year==compareDate.year&&this.month==compareDate.month&&this.day<compareDate.day)) {
-            return true;
-        }else
-            return false;
-    }
+
     public String getDateinString(){
         return this.year+"-"+this.month+"-"+this.day;
     }

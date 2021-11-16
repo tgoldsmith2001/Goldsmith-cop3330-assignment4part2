@@ -52,20 +52,6 @@ public class Todo_Controller {
         return this.global_todo;
     }
 
-
-    //Allows user to delete a todo list by name from the master list
-    public boolean removeTodoList(Todo_List toRemove){
-        /*
-        Check if toRemove is in all_todo_list
-        if this is the case
-            remove toRemove from Todo_List
-            return true
-        else
-            return false
-         */
-        return true;
-    }
-
     //Allows the user to save all active todo lists in the master list to xml file
     public void saveToFile(Todo_List items) throws IOException {
             String fileString = TodotoString(items);
