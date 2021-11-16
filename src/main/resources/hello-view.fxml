@@ -18,7 +18,6 @@
         <TreeView fx:id="Todo_List_Treeview" layoutX="162.0" layoutY="59.0" onContextMenuRequested="#Todo_Tree_Selected" onMouseClicked="#Todo_Tree_Selected" prefHeight="200.0" prefWidth="200.0" />
         <Button fx:id="Load_Button" layoutX="25.0" layoutY="158.0" mnemonicParsing="false" onAction="#Load_From_Storage" prefHeight="39.0" prefWidth="103.0" text="Load File" />
         <Label layoutX="436.0" layoutY="38.0" text="Saved Todo Lists" />
-        <Button layoutX="411.0" layoutY="265.0" mnemonicParsing="false" text="Recover" />
         <Button fx:id="ViewAll_Button" layoutX="153.0" layoutY="32.0" mnemonicParsing="false" onAction="#setDisplayAll" text="View All">
             <font>
                 <Font size="8.0" />
@@ -46,11 +45,16 @@
             <Font size="6.0" />
          </font>
       </Button>
-      <Label fx:id="Todo_Label" layoutX="94.0" layoutY="296.0" prefHeight="120.0" prefWidth="143.0" wrapText="true">
+      <Label fx:id="Todo_Label" layoutX="14.0" layoutY="265.0" prefHeight="120.0" prefWidth="143.0" wrapText="true">
          <font>
             <Font name="System Bold" size="9.0" />
          </font>
       </Label>
       <TreeView fx:id="Saved_Treeview" layoutX="380.0" layoutY="58.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button fx:id="About_Button" layoutX="25.0" layoutY="205.0" mnemonicParsing="false" onAction="#Information_Page" prefHeight="52.0" prefWidth="103.0" text="Information About This Program" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

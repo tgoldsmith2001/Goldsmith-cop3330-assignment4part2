@@ -27,7 +27,7 @@ public class Controller implements Initializable {
 
     Todo_Controller TDC= new Todo_Controller("src/main","Storage");
 
-    private String RootText= "Starting_Todo";
+    private String RootText= "Todo List";
     private TreeItem<String>Todo_Root;
     private TreeItem<String>Saved_Root;
     @FXML
@@ -53,6 +53,8 @@ public class Controller implements Initializable {
     @FXML
     private Button Load_Button;
     @FXML
+    private Button About_Button;
+    @FXML
     private TreeView<String> Todo_List_Treeview;
     @FXML
     private TreeView<String> Saved_Treeview;
@@ -67,7 +69,41 @@ public class Controller implements Initializable {
         Todo_Root.setExpanded(true);
     }
     public Controller() throws IOException {}
+    @FXML
+    void Information_Page(){
 
+        Dialog<ArrayList<String>> dialog = new Dialog<>();
+        dialog.setTitle("Item Prompts");
+        dialog.setHeaderText("Welcome! This Program stores and allows organization of a single Todo List\n" +
+                "To Create an Item: click the Add Item button and fill in the subsequent text prompts\n" +
+                "To see Information about each item: Select the item in the Tree View to display information int he bottom right\n" +
+                "To Remove and Item: Select the item to be removed in the Tree View then select the remove Button\n" +
+                "To Clear all Todo Lists: Select the Todo List title at the top of the Tree View then select the Delete All Button\n" +
+                "To edit an Item: Select the item to edit then select one of the four edit options below and follow the text prompts\n" +
+                "To mark and Item as Complete or Incomplete: Select the item to be altered and select the Mark Complete/Incomplete Button\n" +
+                "To see only Complete/Incomplete Items: Select the View Completed Items Button or View Incomplete Items Button\n" +
+                "To save to Memory: Select the Save to File Button\n" +
+                "To Retrieve from Memory: Select the Load File button to retrieve the Todo List from storage to the Saved List section");
+
+        ButtonType enterButtonType = new ButtonType("Return", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(enterButtonType);
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20, 150, 10, 10));
+
+        grid.add(new Label("Hello"), 0, 0);
+
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == enterButtonType) {
+                return null;
+            }
+            return null;
+        });
+        //Optional<Pair<String, String>> result = dialog.showAndWait();
+        Optional<ArrayList<String>> result = dialog.showAndWait();
+    }
     @FXML
     void Todo_Tree_Selected(MouseEvent event){
         if(Todo_List_Treeview.getSelectionModel().getSelectedItem()!=null){
