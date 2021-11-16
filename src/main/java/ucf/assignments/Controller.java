@@ -29,6 +29,7 @@ public class Controller implements Initializable {
 
     private String RootText= "Starting_Todo";
     private TreeItem<String>Todo_Root;
+    private TreeItem<String>Saved_Root;
     @FXML
     private Button Add_Button;
     @FXML
@@ -50,13 +51,16 @@ public class Controller implements Initializable {
     @FXML
     private Button Save_Button;
     @FXML
+    private Button Load_Button;
+    @FXML
     private TreeView<String> Todo_List_Treeview;
+    @FXML
+    private TreeView<String> Saved_Treeview;
     @FXML
     private Label Todo_Label;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("IN");
         TDC.setTodoList(new Todo_List(RootText));
         Todo_Root=new TreeItem<String >(RootText);
         Todo_List_Treeview.setRoot(Todo_Root);
@@ -281,6 +285,18 @@ public class Controller implements Initializable {
     @FXML
     void SaveToFile() throws IOException {
         TDC.saveToFile(TDC.getTodoList());
+    }
+    @FXML
+    void Load_From_Storage() throws IOException {
+        Todo_List fromMemory= TDC.readMemory();
+        TDC.setSavedTodoList(fromMemory);
+        Saved_Root=new TreeItem<String >(fromMemory.getTitle());
+        Saved_Treeview.setRoot(Saved_Root);
+        Saved_Root.setExpanded(true);
+        for (int i = 0; i < TDC.getSavedTodoList().getItems().size(); i++) {
+            TreeItem<String> toAdd= new TreeItem<String>(TDC.getSavedTodoList().getItems().get(i).getName());
+            Saved_Root.getChildren().add(toAdd);
+        }
     }
     private Optional <ArrayList<String>> itemDialog(){
         //Dialog<Pair<String, String>> dialog = new Dialog<>();

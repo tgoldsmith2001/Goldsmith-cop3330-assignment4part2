@@ -34,6 +34,9 @@ public class Item {
     public date getDate(){
         return this.dueDate;
     }
+    public void setName(String name){
+        this.name=name;
+    }
 
     public void setComplete(Boolean complete) {
         this.complete = complete;
@@ -44,10 +47,7 @@ public class Item {
 
     //Updates current items description based on input parameter
     public String updateDescription(String newDescription){
-        /*
-        Set description to the input parameter
-        Return description
-         */
+        this.description=newDescription;
         return "";
     }
     //Updates current items due date based on input parameter

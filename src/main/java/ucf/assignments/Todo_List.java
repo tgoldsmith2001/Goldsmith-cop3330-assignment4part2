@@ -61,10 +61,7 @@ public class Todo_List {
 
     //Allows user to update title of todo list based on input parameter
     public String updateTitle(String newTitle){
-        /*
-        Set the title variable to the input parameter
-        Return the title of the Todo list
-         */
+        this.title=newTitle;
         return "";
     }
     //Returns all values of items

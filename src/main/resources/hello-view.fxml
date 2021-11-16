@@ -16,11 +16,9 @@
             <Font size="8.0" />
          </font></Button>
         <TreeView fx:id="Todo_List_Treeview" layoutX="162.0" layoutY="59.0" onContextMenuRequested="#Todo_Tree_Selected" onMouseClicked="#Todo_Tree_Selected" prefHeight="200.0" prefWidth="200.0" />
-        <Button layoutX="25.0" layoutY="158.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="103.0" text="Load File" />
-        <ListView layoutX="380.0" layoutY="59.0" prefHeight="200.0" prefWidth="200.0" />
+        <Button fx:id="Load_Button" layoutX="25.0" layoutY="158.0" mnemonicParsing="false" onAction="#Load_From_Storage" prefHeight="39.0" prefWidth="103.0" text="Load File" />
         <Label layoutX="436.0" layoutY="38.0" text="Saved Todo Lists" />
-        <Button layoutX="407.0" layoutY="265.0" mnemonicParsing="false" text="Recover" />
-        <Button layoutX="487.0" layoutY="265.0" mnemonicParsing="false" text="Recover All" />
+        <Button layoutX="411.0" layoutY="265.0" mnemonicParsing="false" text="Recover" />
         <Button fx:id="ViewAll_Button" layoutX="153.0" layoutY="32.0" mnemonicParsing="false" onAction="#setDisplayAll" text="View All">
             <font>
                 <Font size="8.0" />
@@ -53,5 +51,6 @@
             <Font name="System Bold" size="9.0" />
          </font>
       </Label>
+      <TreeView fx:id="Saved_Treeview" layoutX="380.0" layoutY="58.0" prefHeight="200.0" prefWidth="200.0" />
     </children>
 </AnchorPane>
