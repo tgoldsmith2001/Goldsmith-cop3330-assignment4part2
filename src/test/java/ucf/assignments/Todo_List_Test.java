@@ -59,7 +59,6 @@ class Todo_List_Test {
         }
     }
 
-    //Test for Requirement 8
     @org.junit.jupiter.api.Test
     void updateTitle() {
         /*
@@ -68,7 +67,7 @@ class Todo_List_Test {
         Check the title of test_1 by using an assert equals to ensure it was changed to "test_before"
          */
     }
-    //Test for Requirement 14
+
     @org.junit.jupiter.api.Test
     void getItems() {
         ArrayList<Item> test_array= new ArrayList<Item>();
@@ -77,7 +76,7 @@ class Todo_List_Test {
         Todo_List todo_test= new Todo_List("Todo_Test",test_array);
         assertTrue(test_array==todo_test.getItems());
     }
-    //Test for Requirement 15
+
     @org.junit.jupiter.api.Test
     void getIncompleteItems(){
         Item falseItem=new Item(false,"Desc1",new date(00,00,0000),"Item1");
@@ -94,13 +93,22 @@ class Todo_List_Test {
             assertTrue(goal_Array.get(i)==incompleteArray.get(i));
         }
     }
-    //Test for Requirement 16
+
+    @org.junit.jupiter.api.Test
     void getCompleteItems(){
-        /*
-        Define test_16_items as an arraylist of only complete test items
-        Define test_16 as a new Todo List with title "Test_16" and an arraylist of items (with the complete items matching test_16_items)
-        Assert that test_16_items equals a call to getCompleteItems
-         */
+        Item trueItem=new Item(true,"Desc1",new date(00,00,0000),"Item1");
+        ArrayList<Item> goal_Array= new ArrayList<Item>();
+
+        ArrayList<Item> test_array= new ArrayList<Item>();
+        test_array.add(new Item(false,"Desc1",new date(00,00,0000),"Item1"));
+        goal_Array.add(trueItem);
+        test_array.add(trueItem);
+        Todo_List todo_test= new Todo_List("Todo_Test",test_array);
+
+        ArrayList<Item>completeArray=todo_test.getCompleteItems();
+        for (int i = 0; i < completeArray.size(); i++) {
+            assertTrue(goal_Array.get(i)==completeArray.get(i));
+        }
     }
     //Test for Extra Credit
     void sortByDate(){
