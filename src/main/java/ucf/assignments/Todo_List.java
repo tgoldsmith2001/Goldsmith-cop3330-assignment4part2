@@ -54,14 +54,11 @@ public class Todo_List {
         return this.items;
     }
     //Searches for item in Array
-    private int searchItem(String name){
-        /*
-        For each Item in items
-            If the name of the item is the same as the input parameter return its index
-        If input parameter is not found in list return -1
-         */
-        return -1;
+
+    public String getTitle(){
+        return this.title;
     }
+
     //Allows user to update title of todo list based on input parameter
     public String updateTitle(String newTitle){
         /*

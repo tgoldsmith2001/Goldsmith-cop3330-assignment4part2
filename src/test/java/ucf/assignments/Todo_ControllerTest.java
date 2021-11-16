@@ -6,6 +6,8 @@ package ucf.assignments;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 class Todo_ControllerTest {
     /*Instantiate Todo_Controller_Test (new Todo_Controller)
     Create initialList (TodoList) with title "INITIAL_TITLE"
@@ -16,25 +18,11 @@ class Todo_ControllerTest {
     void addTodoList() {
 
     }
-    //Test for Requirement 7
+
     @Test
-    void removeTodoList() {
-        /*
-        Create test_7 (Todo_List) with input parameter "INITIAL_TITLE"
-        Call removeTodoList with input test_7
-        Call Assert equals to ensure Todo_Controller_Test is an empty array
-         */
-    }
-    //Test for Requirement 17
-    @Test
-    void saveSingleToFile(){
-        /*
-        Define a new array of todo lists
-        Add one todo list to the array
-        Save all todo lists in array to a file
-        Call readMemory of the created file
-        Assert that initial array equals the call to readMemory
-         */
+    void saveToFile() throws IOException {
+        //Todo_Controller test_Controller= new Todo_Controller("src/test/java/Resources","Storage_Test");
+        //Todo_List todoTest=new Todo_List("Test");
     }
     //Test for Requirement 18
     @Test

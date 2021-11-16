@@ -1,4 +1,5 @@
-package ucf.assignments;/*
+package ucf.assignments;
+/*
  *  UCF COP3330 Fall 2021 Assignment 4 Solution
  *  Copyright 2021 Tyler Goldsmith
  */
@@ -61,45 +62,36 @@ public class Todo_Controller {
          */
         return true;
     }
-    //Allows the user to save a single todo list to the xml file
-    public boolean saveSingleToFile(Todo_List items){
-        /*
-        Define a Buffered Writer and file
-        For each Item in items
-            Print the Item to file in xml format
-         */
-        return true;
-    }
+
     //Allows the user to save all active todo lists in the master list to xml file
-    public boolean saveAllToFile(ArrayList<Todo_List> todo){
-        /*
-        Define a Buffered Writer and file
-        Call readMemory() and save return value to storedTodos
-        for each todo_list in todo
-            Search each item in storedTodos to ensure todo_list is not already in memory (avoid duplication)
-            Print Todo list information in xml format
-            For each Item in todo_list
-                Print the Item to file in xml format
-                */
-        /*
-                Example:
-                <Todos>
-                    <Todo>
-                        <Title>myTitle</Title>
-                        <Items>
-                            <Item>
-                                <Description>myDescription</Description>
-                                <Date>Date</Date>
-                                <Complete>Boolean</Complete>
-                            </Item>
-                            <Item>
-                                ...
-                            </Item>
-                        </Items>
-                    </Todo>
-                </Todos>
-         */
-        return true;
+    public void saveToFile(Todo_List items) throws IOException {
+            String fileString = TodotoString(items);
+            //Clear the file and rewrite to it
+            FileWriter FW = new FileWriter(this.xmlFile, false);
+            BufferedWriter BW = new BufferedWriter(FW);
+            BW.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+            BW.write("<Todo>");
+            BW.write(fileString);
+            BW.write("\n</Todo>\n");
+            //BW.write("</xml>");
+            BW.close();
+    }
+    //Creates a string from Todo List to allow for storage in memory
+    public String TodotoString(Todo_List items) throws IOException {
+        //String ret= FiletoString();
+        String ret= "";
+        ret+="\t<Title>"+items.getTitle()+"</Title>\n\t<Items>\n\t";
+        for (int i = 0; i < items.getItems().size(); i++) {
+            ret+="\t<Item>\n\t\t\t";
+            Item currItem = items.getItems().get(i);
+            ret+="<Name>" + currItem.getName() + "</Name>\n\t\t\t";
+            ret+="<Description>" + currItem.getDescription() + "</Description>\n\t\t\t";
+            ret+="<Date>" + currItem.getDate().getDateinString() + "</Date>\n\t\t\t";
+            ret+="<Complete>" + currItem.getComplete() + "</Complete>\n\t\t";
+            ret+="</Item>\n\t";
+        }
+        ret+="</Items>\n";
+        return ret;
     }
     //Allows the user to search the storage for a todo list by name
     public ArrayList<Todo_List> searchStorage(String listTitle){

@@ -48,6 +48,8 @@ public class Controller implements Initializable {
     @FXML
     private Button ViewInCompleted_Button;
     @FXML
+    private Button Save_Button;
+    @FXML
     private TreeView<String> Todo_List_Treeview;
     @FXML
     private Label Todo_Label;
@@ -275,6 +277,10 @@ public class Controller implements Initializable {
                 Todo_Root.getChildren().add(toAdd);
             }
         }
+    }
+    @FXML
+    void SaveToFile() throws IOException {
+        TDC.saveToFile(TDC.getTodoList());
     }
     private Optional <ArrayList<String>> itemDialog(){
         //Dialog<Pair<String, String>> dialog = new Dialog<>();
