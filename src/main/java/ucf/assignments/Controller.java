@@ -78,7 +78,7 @@ public class Controller implements Initializable {
 
         Dialog<ArrayList<String>> dialog = new Dialog<>();
         dialog.setTitle("Item Prompts");
-        dialog.setHeaderText("Welcome! This Program stores and allows organization of a single Todo List\n" +
+        dialog.setHeaderText("Welcome! This Program stores and allows organization of a single Todo List:\n\n" +
                 "To Create an Item: click the Add Item button and fill in the subsequent text prompts\n" +
                 "To see Information about each item: Select the item in the Tree View to display information int he bottom right\n" +
                 "To Remove and Item: Select the item to be removed in the Tree View then select the remove Button\n" +
