@@ -105,10 +105,7 @@ public class Todo_Controller {
                     ret.getItems().get(itemCounter).updateDescription(description);
                 }else if(line.contains("<Date>")){
                     String date= parseSingleLine("Date",line);
-                    int month= Integer.parseInt(date.substring(5,7));
-                    int day= Integer.parseInt(date.substring(8,10));
-                    int year= Integer.parseInt(date.substring(0,4));
-                    ret.getItems().get(itemCounter).setDate(new date(month, day, year));
+                    ret.getItems().get(itemCounter).setDate(new date(date.substring(5,7), date.substring(8,10), date.substring(0,4)));
                 }else if(line.contains("<Complete>")){
                     //When we get to name tag we start creating an item
                     String comp= parseSingleLine("Complete",line);

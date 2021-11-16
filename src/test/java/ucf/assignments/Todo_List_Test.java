@@ -11,9 +11,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class Todo_List_Test {
     @Test
+    //Test to check the addItem functionality of the code, also verifies ability to remove by simply resetting variable
     void addItem() {
         ArrayList<Item> Test= new ArrayList<Item>();
-        Item toAdd=new Item(false, "Test", new date(00,00,00),"Test");
+        Item toAdd=new Item(false, "Test", new date("00","00","00"),"Test");
         Test.add(toAdd);
         Todo_List Todo_test= new Todo_List("Todo_Test");
         Todo_test.addItem(toAdd);
@@ -23,14 +24,17 @@ class Todo_List_Test {
     }
 
     @org.junit.jupiter.api.Test
+        //Test to check for the removing an item to a todo list
+        //Create two identical Todo Lists, add an additional item to one, then call removeItem
+        //on that item and ensure the two are equal
     void removeItem() {
         {
             ArrayList<Item> Test= new ArrayList<Item>();
-            Item toAdd=new Item(false, "Test1", new date(00,00,00),"Test");
+            Item toAdd=new Item(false, "Test1", new date("00","00","00"),"Test");
             Test.add(toAdd);
-            toAdd=new Item(false, "Test2", new date(00,00,00),"Test");
+            toAdd=new Item(false, "Test2", new date("00","00","00"),"Test");
             Test.add(toAdd);
-            toAdd=new Item(false, "Test3", new date(00,00,00),"Test");
+            toAdd=new Item(false, "Test3", new date("00","00","00"),"Test");
             Test.add(toAdd);
 
             Todo_List Todo_test= new Todo_List("Todo_Test",Test);
@@ -42,15 +46,18 @@ class Todo_List_Test {
         }
     }
 
+    //Test to check for the removing all items in a todo list
+    //Create a todo list populated with items, then call removeallItems and ensure the length
+    //of the item array list is 0
     @org.junit.jupiter.api.Test
     void removeAllItems(){
         {
             ArrayList<Item> Test= new ArrayList<Item>();
-            Item toAdd=new Item(false, "Test1", new date(00,00,00),"Test");
+            Item toAdd=new Item(false, "Test1", new date("00","00","00"),"Test");
             Test.add(toAdd);
-            toAdd=new Item(false, "Test2", new date(00,00,00),"Test");
+            toAdd=new Item(false, "Test2", new date("00","00","00"),"Test");
             Test.add(toAdd);
-            toAdd=new Item(false, "Test3", new date(00,00,00),"Test");
+            toAdd=new Item(false, "Test3", new date("00","00","00"),"Test");
             Test.add(toAdd);
 
             Todo_List Todo_test= new Todo_List("Todo_Test",Test);
@@ -59,31 +66,28 @@ class Todo_List_Test {
         }
     }
 
-    @org.junit.jupiter.api.Test
-    void updateTitle() {
-        /*
-        Define test_8 (a todo list) and define using new using initializer with only title input: new Todo_List("test_before")
-        Call updateTitle with input parameter "test_after"
-        Check the title of test_1 by using an assert equals to ensure it was changed to "test_before"
-         */
-    }
-
+    //Test for ability to get all items independent of complete/incomplete status
+    //Populate TodoList with items of both complete and incomplete status then call getItems()
+    //and ensure the generated item array is the same as the items put in
     @org.junit.jupiter.api.Test
     void getItems() {
         ArrayList<Item> test_array= new ArrayList<Item>();
-        test_array.add(new Item(false,"Desc1",new date(00,00,0000),"Item1"));
-        test_array.add(new Item(true,"Desc2",new date(11,11,1111),"Item2"));
+        test_array.add(new Item(false,"Desc1",new date("00","00","0000"),"Item1"));
+        test_array.add(new Item(true,"Desc2",new date("11","11","1111"),"Item2"));
         Todo_List todo_test= new Todo_List("Todo_Test",test_array);
         assertTrue(test_array==todo_test.getItems());
     }
 
+    //Test for ability to get all items of Incomplete status
+    //Populate TodoList with items of both complete and incomplete status then call getIncompleteItems()
+    //and ensure the generated item array is the same as the array of incomplete items put in
     @org.junit.jupiter.api.Test
     void getIncompleteItems(){
-        Item falseItem=new Item(false,"Desc1",new date(00,00,0000),"Item1");
+        Item falseItem=new Item(false,"Desc1",new date("00","00","0000"),"Item1");
         ArrayList<Item> goal_Array= new ArrayList<Item>();
 
         ArrayList<Item> test_array= new ArrayList<Item>();
-        test_array.add(new Item(true,"Desc1",new date(00,00,0000),"Item1"));
+        test_array.add(new Item(true,"Desc1",new date("00","00","0000"),"Item1"));
         goal_Array.add(falseItem);
         test_array.add(falseItem);
         Todo_List todo_test= new Todo_List("Todo_Test",test_array);
@@ -93,14 +97,16 @@ class Todo_List_Test {
             assertTrue(goal_Array.get(i)==incompleteArray.get(i));
         }
     }
-
+    //Test for ability to get all items of complete status
+    //Populate TodoList with items of both complete and incomplete status then call getCompleteItems()
+    //and ensure the generated item array is the same as the array of complete items put in
     @org.junit.jupiter.api.Test
     void getCompleteItems(){
-        Item trueItem=new Item(true,"Desc1",new date(00,00,0000),"Item1");
+        Item trueItem=new Item(true,"Desc1",new date("00","00","0000"),"Item1");
         ArrayList<Item> goal_Array= new ArrayList<Item>();
 
         ArrayList<Item> test_array= new ArrayList<Item>();
-        test_array.add(new Item(false,"Desc1",new date(00,00,0000),"Item1"));
+        test_array.add(new Item(false,"Desc1",new date("00","00","0000"),"Item1"));
         goal_Array.add(trueItem);
         test_array.add(trueItem);
         Todo_List todo_test= new Todo_List("Todo_Test",test_array);
@@ -109,13 +115,5 @@ class Todo_List_Test {
         for (int i = 0; i < completeArray.size(); i++) {
             assertTrue(goal_Array.get(i)==completeArray.get(i));
         }
-    }
-    //Test for Extra Credit
-    void sortByDate(){
-        /*
-        Define test_EC as an arrayList of todo_lists (out of order)
-        Define Ordered_test_EC as an arrayList of todo_lists (in order)
-        Assert that arrat test_EC equals Ordered_test_EC
-         */
     }
 }

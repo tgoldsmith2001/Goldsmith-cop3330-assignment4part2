@@ -167,15 +167,20 @@ public class Controller implements Initializable {
     @FXML
     void Add_Item(){
         //Optional<Pair<String, String>> Result= itemDialog();
-        Optional<ArrayList<String>> Result= itemDialog();
+        Optional<ArrayList<String>> Result=null;
+        while(true) {
+            Result = itemDialog();
+            if((Result.get().get(2).toString().matches("[0-9]+") && Result.get().get(2).toString().length() == 2)&&
+                    (Result.get().get(3).toString().matches("[0-9]+") && Result.get().get(3).toString().length() == 2)&&
+                    (Result.get().get(4).toString().matches("[0-9]+") && Result.get().get(4).toString().length() == 4))
+                break;
+            System.out.println("Improper format for Date");
+        }
         //Gets the index of the current todo list in array of all todo lists
         String name= Result.get().get(0);
         String description= Result.get().get(1);
-        int month= Integer.parseInt(Result.get().get(2));
-        int day= Integer.parseInt(Result.get().get(3));
-        int year= Integer.parseInt(Result.get().get(4));
 
-        date itemDueDate= new date(month, day, year);
+        date itemDueDate= new date(Result.get().get(2), Result.get().get(3), Result.get().get(4));
 
         Item toAdd= new Item(false,description,itemDueDate,name);
 
@@ -243,9 +248,9 @@ public class Controller implements Initializable {
                     break;
                 System.out.println("Improper Format for Date");
             }
-            int month=Integer.parseInt(arrayDate.get().get(0));
-            int day=Integer.parseInt(arrayDate.get().get(1));
-            int year= Integer.parseInt(arrayDate.get().get(2));
+            String month=arrayDate.get().get(0);
+            String day=arrayDate.get().get(1);
+            String year= arrayDate.get().get(2);
             date newDate= new date(month,day,year);
             for (int i = 0; i < TDC.getTodoList().getItems().size(); i++) {
                 Item currentItem= TDC.getTodoList().getItems().get(i);

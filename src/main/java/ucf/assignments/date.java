@@ -5,10 +5,11 @@
 package ucf.assignments;
 
 public class date {
-    private int year;
-    private int month;
-    private int day;
-    public date(int month, int day, int year){
+    private String year;
+    private String month;
+    private String day;
+
+    public date(String month, String day, String year){
         this.month=month;
         this.day=day;
         this.year=year;

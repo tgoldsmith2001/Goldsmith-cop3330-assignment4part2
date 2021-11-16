@@ -7,45 +7,26 @@ package ucf.assignments;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class Todo_ControllerTest {
-    /*Instantiate Todo_Controller_Test (new Todo_Controller)
-    Create initialList (TodoList) with title "INITIAL_TITLE"
-    Add a TodoList to Todo_Controller_Test.all_todo_lists
-     */
-    //Test for Requirement 6
     @Test
-    void addTodoList() {
-
-    }
-
-    @Test
+    //Test for both saving to file and retrieving from file
+    //Generate file, save todo to the file, read it back, and ensure two lists are equal
     void saveToFile() throws IOException {
-        //Todo_Controller test_Controller= new Todo_Controller("src/test/java/Resources","Storage_Test");
-        //Todo_List todoTest=new Todo_List("Test");
-    }
-    //Test for Requirement 18
-    @Test
-    void saveAllToFile(){
-                /*
-        Define a new array of todo lists
-        Add multiple todo list to the array
-        Save all todo lists in array to a file
-        Call readMemory of the created file
-        Assert that initial array equals the call to readMemory
-         */
-    }
-    //Test for Requirement 19 and 20
-    @Test
-    void searchStorage(){
-        /*
-        Define a new array of todo lists
-        Add multiple todo list to the array
-        Save all todo lists in array to a file
-        Call searchStorage for one element in memory, and set equal to todo list variable
-        Assert that todo list variable equals intended memory access
-        Call searchStorage again for another element, and set equal to another variable
-        Assert that todo list variable equals intended memory access
-         */
+        Todo_Controller test_Controller= new Todo_Controller("src/test/java/Resources","Storage_Test");
+        ArrayList<Item>test_Items= new ArrayList<Item>();
+        test_Items.add(new Item(false,"DESC1",new date("12","23","2001"),"TITLE1"));
+        Todo_List test_Todo= new Todo_List("TODO",test_Items);
+
+        test_Controller.saveToFile(test_Todo);
+        Todo_List retrievedTodo= test_Controller.readMemory();
+        for (int i = 0; i < retrievedTodo.getItems().size(); i++) {
+            assertTrue(retrievedTodo.getItems().get(i).getName().equals(test_Todo.getItems().get(i).getName()));
+            assertTrue(retrievedTodo.getItems().get(i).getComplete()==(test_Todo.getItems().get(i).getComplete()));
+            assertTrue(retrievedTodo.getItems().get(i).getDescription().equals(test_Todo.getItems().get(i).getDescription()));
+        }
     }
 }
