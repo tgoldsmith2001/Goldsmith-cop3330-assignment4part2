@@ -22,6 +22,7 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     TreeItem<String> current_Todo_Tree_Selection=null;
+    TreeItem<String> current_Saved_Selection=null;
     String currentSelection= "NONE";
     String Items_Shown= "ALL";
 
@@ -60,6 +61,8 @@ public class Controller implements Initializable {
     private TreeView<String> Saved_Treeview;
     @FXML
     private Label Todo_Label;
+    @FXML
+    private Label Saved_Label;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -137,6 +140,27 @@ public class Controller implements Initializable {
                 Complete_Button.setOpacity(0.25);
                 Incomplete_Button.setOpacity(0.25);
                 }
+        }
+    }
+    @FXML
+    void Saved_Tree_Selected(MouseEvent event){
+        if(Saved_Treeview.getSelectionModel().getSelectedItem()!=null){
+            TreeItem<String> item = Saved_Treeview.getSelectionModel().getSelectedItem();
+            current_Saved_Selection=item;
+            if(current_Saved_Selection.getParent()!=null) {
+                //Case where the parent is the root meaning that we have selected an Item
+                Item currentItem=null;
+                if (current_Saved_Selection.getParent().getValue().equals(RootText)) {
+                    for (int i = 0; i < TDC.getSavedTodoList().getItems().size(); i++) {
+                        Item temp= TDC.getSavedTodoList().getItems().get(i);
+                        if(temp.getName().equals(current_Saved_Selection.getValue()))
+                            currentItem=temp;
+                    }
+                    Saved_Label.setText("Saved Item Information:\nName: "+currentItem.getName()+"\nDescription: "+ currentItem.getDescription()
+                            +"\nDue Date: "+currentItem.getDate().getDateinString()+"\nComplete?: "+currentItem.getComplete());
+                    //current_Selection="ITEM";
+                }
+            }
         }
     }
     @FXML
