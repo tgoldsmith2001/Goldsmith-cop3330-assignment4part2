@@ -21,12 +21,12 @@
         <Label layoutX="436.0" layoutY="38.0" text="Saved Todo Lists" />
         <Button layoutX="407.0" layoutY="265.0" mnemonicParsing="false" text="Recover" />
         <Button layoutX="487.0" layoutY="265.0" mnemonicParsing="false" text="Recover All" />
-        <Button fx:id="ViewAll_Button" layoutX="153.0" layoutY="32.0" mnemonicParsing="false" text="View All">
+        <Button fx:id="ViewAll_Button" layoutX="153.0" layoutY="32.0" mnemonicParsing="false" onAction="#setDisplayAll" text="View All">
             <font>
                 <Font size="8.0" />
             </font>
         </Button>
-        <Button layoutX="197.0" layoutY="32.0" mnemonicParsing="false" text="View Completed Items">
+        <Button fx:id="ViewCompleted_Button" layoutX="197.0" layoutY="32.0" mnemonicParsing="false" onAction="#setDisplayCompleted" opacity="0.25" text="View Completed Items">
             <font>
                 <Font size="8.0" />
             </font>

@@ -80,11 +80,19 @@ class Todo_List_Test {
     //Test for Requirement 15
     @org.junit.jupiter.api.Test
     void getIncompleteItems(){
-        /*
-        Define test_15_items as an arraylist of only incomplete test items
-        Define test_15 as a new Todo List with title "Test_15" and an arraylist of items (with the incomplete items matching test_15_items)
-        Assert that test_15_items equals a call to getIncompleteItems
-         */
+        Item falseItem=new Item(false,"Desc1",new date(00,00,0000),"Item1");
+        ArrayList<Item> goal_Array= new ArrayList<Item>();
+
+        ArrayList<Item> test_array= new ArrayList<Item>();
+        test_array.add(new Item(true,"Desc1",new date(00,00,0000),"Item1"));
+        goal_Array.add(falseItem);
+        test_array.add(falseItem);
+        Todo_List todo_test= new Todo_List("Todo_Test",test_array);
+
+        ArrayList<Item>incompleteArray=todo_test.getIncompleteItems();
+        for (int i = 0; i < incompleteArray.size(); i++) {
+            assertTrue(goal_Array.get(i)==incompleteArray.get(i));
+        }
     }
     //Test for Requirement 16
     void getCompleteItems(){

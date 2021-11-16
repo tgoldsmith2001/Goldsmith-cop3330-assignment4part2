@@ -44,6 +44,8 @@ public class Controller implements Initializable {
     @FXML
     private Button ViewAll_Button;
     @FXML
+    private Button ViewCompleted_Button;
+    @FXML
     private TreeView<String> Todo_List_Treeview;
     @FXML
     private Label Todo_Label;
@@ -207,21 +209,43 @@ public class Controller implements Initializable {
     }
     @FXML
     void setDisplayAll(){
+        if(!Items_Shown.equals("ALL")){
         Items_Shown="ALL";
         ViewAll_Button.setOpacity(1);
-        //ViewCompleted_Button.setOpacity(0.25);
+        ViewCompleted_Button.setOpacity(0.25);
         //ViewIncomplete_Button.setOpacity(0.25);
         //Clear out all Items
-        for (int i = 0; i < Todo_Root.getChildren().size(); i++) {
+        int size=TDC.getTodoList().getCompleteItems().size();
+        for (int i = 0; i < size; i++) {
             Todo_Root.getChildren().get(i).getParent().getChildren().remove(Todo_Root.getChildren().get(i));
+            i--;
         }
         //Add all Items back to the tree
         for (int i = 0; i < TDC.getTodoList().getItems().size(); i++) {
-            TreeItem toAdd= new TreeItem<String>(TDC.getTodoList().getItems().get(i).getName());
+            TreeItem toAdd = new TreeItem<String>(TDC.getTodoList().getItems().get(i).getName());
             Todo_Root.getChildren().add(toAdd);
         }
+        }
     }
-
+    @FXML
+    void setDisplayCompleted(){
+        if(!Items_Shown.equals("COMPLETED")) {
+            Items_Shown = "COMPLETED";
+            ViewAll_Button.setOpacity(0.25);
+            ViewCompleted_Button.setOpacity(1);
+            //ViewIncomplete_Button.setOpacity(0.25);
+            //Clear out all Items
+            for (int i = 0; i < Todo_Root.getChildren().size(); i++) {
+                Todo_Root.getChildren().get(i).getParent().getChildren().remove(Todo_Root.getChildren().get(i));
+                i--;
+            }
+            int size = TDC.getTodoList().getCompleteItems().size();
+            for (int i = 0; i < size; i++) {
+                TreeItem toAdd = new TreeItem<String>(TDC.getTodoList().getCompleteItems().get(i).getName());
+                Todo_Root.getChildren().add(toAdd);
+            }
+        }
+    }
     private Optional <ArrayList<String>> itemDialog(){
         //Dialog<Pair<String, String>> dialog = new Dialog<>();
         Dialog<ArrayList<String>> dialog = new Dialog<>();
